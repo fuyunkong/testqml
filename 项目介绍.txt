@@ -4,3 +4,4 @@
 02
 提交 https://git.oschina.net/fuyunkong/testqml.git
 配置 public key
+o3,conpang 配置
