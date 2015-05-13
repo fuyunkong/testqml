@@ -12,3 +12,5 @@ o3,conpang 配置
 	事件MenuItem 触发事件 onTriggered: console.log("Open action triggered"); 打印
 						  onTriggered: Qt.quit(); 程序结束
 一个按钮Button “按钮”
+05,忽略文件设置
+.gitignore

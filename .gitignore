@@ -1,0 +1,8 @@
+*.o
+*.so
+*.qmlproject.user
+moc*
+Makefile
+*.pro.user
+*~
+build
