@@ -14,3 +14,4 @@ o3,conpang 配置
 一个按钮Button “按钮”
 05,忽略文件设置
 .gitignore
+06,添加鼠标点击事件
