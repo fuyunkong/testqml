@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
+
 QT       += core gui
+QT       += declarative
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,3 +22,7 @@ HEADERS  += mainwindow.h \
     MyDockWidgetDemo.h
 
 FORMS    += mainwindow.ui
+
+
+OTHER_FILES += \
+    application.qml

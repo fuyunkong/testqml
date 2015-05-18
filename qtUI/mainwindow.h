@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <QDeclarativeView>
+
 namespace Ui {
 class MainWindow;
 }
@@ -18,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QDeclarativeView *view;
 
     void createDockWidget();    //创建可停靠窗口
     void createDockWidget01();    //创建可停靠窗口

@@ -4,6 +4,10 @@
 #include <QCalendarWidget>
 #include <QTextEdit>
 
+#include <QDeclarativeView>
+#include <QWidget>
+#include <QVBoxLayout>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -74,8 +78,20 @@ void MainWindow::createDockWidget04(){
     QDockWidget *secondDockWidget = new QDockWidget(this);
     secondDockWidget->setWindowTitle(tr("场景"));
     secondDockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
-    QTextEdit *myInfo = new QTextEdit(tr("<br>欢迎交流</br><br>博客地址:hhtp://blog.csdn.net/qiurisuixiang</br>"));
-    secondDockWidget->setWidget(myInfo);
+
+    view = new QDeclarativeView();
+    view->setSource(QUrl("../qtUI/application.qml"));
+   // view->show();
+   // QWidget *widget = myExistingWidget();
+    //QVBoxLayout *layout = new QVBoxLayout(widget);
+    //QDeclarativeView *qmlView = new QDeclarativeView;
+   // qmlView->setSource(QUrl::fromLocalFile("application.qml"));
+
+
+   // widget->addWidget(qmlView);
+
+    secondDockWidget->setWidget(view);
+
     this->addDockWidget(Qt::BottomDockWidgetArea, secondDockWidget);
 
 }

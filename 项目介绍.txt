@@ -16,3 +16,4 @@ o3,conpang 配置
 .gitignore
 06,添加鼠标点击事件
 o7,添加qt c++ 工程 示例 QDockWidget悬浮窗 
+08，qt 加载 qml
