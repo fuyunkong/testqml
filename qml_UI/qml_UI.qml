@@ -162,6 +162,12 @@ ApplicationWindow {
                    onReleased: releaseSwitch()
                }
     }
+    Content1{
+          scale:0.8
+
+          anchors.fill: parent
+
+    }
 
 
 }
