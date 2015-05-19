@@ -3,7 +3,19 @@
 #include <QSplitter>
 #include <QTextEdit>
 #include <QTextCodec>
+
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QSettings>
+#include <QQuickWindow>
+#include <QtQml>
+#include <QDebug>
+
 #include <MyDockWidgetDemo.h>
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -35,6 +47,8 @@ int main(int argc, char *argv[])
 //        mainSplitter->setStretchFactor(1, 1);
 //        mainSplitter->setWindowTitle(QObject::tr("分割窗口"));
 //        mainSplitter->show();
+
+
 
         MainWindow mainW;
         mainW.show();

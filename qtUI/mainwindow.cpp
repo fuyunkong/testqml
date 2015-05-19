@@ -23,8 +23,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::createDockWidget(){
-    QTextEdit *edit=new QTextEdit("欢迎交流");
-    setCentralWidget(edit);
+   // view = new QDeclarativeView();
+   // view->setSource(QUrl("../qtUI/application.qml"));
+   // setCentralWidget(view);
     createDockWidget01();
     createDockWidget02();
     createDockWidget03();
@@ -46,7 +47,7 @@ void MainWindow::createDockWidget01(){
     //将QCalendarWidget控件设置成QDockWidget的主控件 使其能随窗口大小改变而改变
     firstDockWidget->setWidget(calendar);
     //向主窗体中添加第一个QDockWidget控件 第一个参数表示初始显示的位置 第二个参数是要添加的QDockWidget控件
-    this->addDockWidget(Qt::TopDockWidgetArea, firstDockWidget);
+    this->addDockWidget(Qt::LeftDockWidgetArea, firstDockWidget);
 
 
 }
@@ -58,7 +59,7 @@ void MainWindow::createDockWidget02(){
     secondDockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
     QTextEdit *myInfo = new QTextEdit(tr("<br>欢迎交流</br><br>博客地址:hhtp://blog.csdn.net/qiurisuixiang</br>"));
     secondDockWidget->setWidget(myInfo);
-    this->addDockWidget(Qt::LeftDockWidgetArea, secondDockWidget);
+    this->addDockWidget(Qt::RightDockWidgetArea, secondDockWidget);
 
 }
 void MainWindow::createDockWidget03(){
@@ -67,8 +68,10 @@ void MainWindow::createDockWidget03(){
     QDockWidget *secondDockWidget = new QDockWidget(this);
     secondDockWidget->setWindowTitle(tr("场景"));
     secondDockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
-    QTextEdit *myInfo = new QTextEdit(tr("<br>欢迎交流</br><br>博客地址:hhtp://blog.csdn.net/qiurisuixiang</br>"));
-    secondDockWidget->setWidget(myInfo);
+    QDeclarativeView *view1 = new QDeclarativeView(this);
+    view1->setSource(QUrl("qrc:/application.qml"));
+
+    secondDockWidget->setWidget(view1);
     this->addDockWidget(Qt::RightDockWidgetArea, secondDockWidget);
 
 }
@@ -79,18 +82,9 @@ void MainWindow::createDockWidget04(){
     secondDockWidget->setWindowTitle(tr("场景"));
     secondDockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
 
-    view = new QDeclarativeView();
-    view->setSource(QUrl("../qtUI/application.qml"));
-   // view->show();
-   // QWidget *widget = myExistingWidget();
-    //QVBoxLayout *layout = new QVBoxLayout(widget);
-    //QDeclarativeView *qmlView = new QDeclarativeView;
-   // qmlView->setSource(QUrl::fromLocalFile("application.qml"));
 
-
-   // widget->addWidget(qmlView);
-
-    secondDockWidget->setWidget(view);
+    QTextEdit *myInfo = new QTextEdit(tr("<br>欢迎交流</br><br>博客地址:hhtp://blog.csdn.net/qiurisuixiang</br>"));
+    secondDockWidget->setWidget(myInfo);
 
     this->addDockWidget(Qt::BottomDockWidgetArea, secondDockWidget);
 
