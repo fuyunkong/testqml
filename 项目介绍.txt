@@ -19,3 +19,4 @@ o7,添加qt c++ 工程 示例 QDockWidget悬浮窗
 08，qt 加载 qml
 09,加资源文件配置
 10,加鼠标右键弹出菜单功能,实现控件任意拖拽
+11,将数据写入Json文件中 object array

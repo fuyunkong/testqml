@@ -27,6 +27,8 @@ private:
     void createDockWidget02();    //创建可停靠窗口
     void createDockWidget03();    //创建可停靠窗口
     void createDockWidget04();    //创建可停靠窗口
+    void createJson();    //创建json文件
+    void createJson2();    //创建json文件
 };
 
 #endif // MAINWINDOW_H

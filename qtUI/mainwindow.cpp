@@ -8,6 +8,20 @@
 #include <QWidget>
 #include <QVBoxLayout>
 
+#include <QtDebug>
+#include <QString>
+
+#include <QJsonObject>
+#include <QJsonDocument>
+
+#include <QJsonArray>
+#include <QByteArray>
+
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -30,6 +44,10 @@ void MainWindow::createDockWidget(){
     createDockWidget02();
     createDockWidget03();
     createDockWidget04();
+
+
+    createJson();
+    createJson2();
 
 }
 
@@ -88,4 +106,71 @@ void MainWindow::createDockWidget04(){
 
     this->addDockWidget(Qt::BottomDockWidgetArea, secondDockWidget);
 
+}
+void MainWindow::createJson()   //创建json文件
+{
+    QJsonObject json;
+    json.insert("name", QString("Qt"));
+    json.insert("version", 5);
+    json.insert("windows", true);
+
+    QJsonDocument document;
+    document.setObject(json);
+    QByteArray byte_array = document.toJson(QJsonDocument::Compact);
+    QString json_str(byte_array);
+
+    qDebug() << json_str;
+
+//    QString file_full, file_name, file_path;
+//    QFileInfo fi;
+//    file_full = QFileDialog::getOpenFileName(this);
+//    fi = QFileInfo(file_full);
+//    file_name = fi.fileName();
+//    file_path = fi.absolutePath();
+//    ui->textEdit->setText(file_path+"\\"+file_name);
+     QString path = "f:\\txt.json";
+     QFile file(path);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::warning(
+                        this,
+                        QObject::tr("Write failure"),
+                        QObject::tr("Cannot write file \n%1\n%2").arg(file.fileName()).arg(
+                            file.errorString()));
+            return;
+        }
+
+       QTextStream out(&file);
+       out<<json_str<<endl;
+       file.close();
+}
+ void MainWindow::createJson2()    //创建json文件
+{
+     QJsonArray json;
+     json.insert(0, QString("Qt"));
+     json.insert(1, QString("version"));
+     json.insert(2, true);
+
+
+     QJsonDocument document;
+     document.setArray(json);
+     QByteArray byte_array = document.toJson(QJsonDocument::Compact);
+     QString json_str(byte_array);
+     QString json_str02(byte_array);
+     json_str += json_str02;
+     qDebug() << json_str;
+
+     QString path = "f:\\txt01.json";
+     QFile file(path);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::warning(
+                        this,
+                        QObject::tr("Write failure"),
+                        QObject::tr("Cannot write file \n%1\n%2").arg(file.fileName()).arg(
+                            file.errorString()));
+            return;
+        }
+
+       QTextStream out(&file);
+       out<<json_str<<endl;
+       file.close();
 }
