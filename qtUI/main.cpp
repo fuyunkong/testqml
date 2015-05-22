@@ -12,6 +12,8 @@
 #include <QtQml>
 #include <QDebug>
 
+
+
 #include <MyDockWidgetDemo.h>
 
 
