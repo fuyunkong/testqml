@@ -73,6 +73,9 @@ private:
 
     void readJson5(); //解析Json文件
 
+    void craeteUIfBgS(); //创建 UI 静止的背景图片fBgS 数据 Json描述
+    void readUIfBgS(); //解析fBgS Json数据文件
+
     QString getJVFkey(QJsonObject obj,QString key);//获得Json key 对应的字符串
 
 };

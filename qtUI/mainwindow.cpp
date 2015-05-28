@@ -31,26 +31,29 @@ void MainWindow::createDockWidget(){
     createDockWidget04();
 
 
-    createJson();
-    createJson2();
+//    createJson();
+//    createJson2();
 
-    createJson3();
-    createJson4();
+//    createJson3();
+//    createJson4();
 
-    createJson5();
+//    createJson5();
 
-    createJson41();
+//    createJson41();
 
-    readJsonObject();
-    readJsonArray();
+//    readJsonObject();
+//    readJsonArray();
 
-    readJson3();
-    readJson4();
+//    readJson3();
+//    readJson4();
 
-    readJson5();
+//    readJson5();
 
-    readJson41();
-    readJson42();
+//    readJson41();
+//    readJson42();
+
+ //   craeteUIfBgS();
+ //   readUIfBgS();
 
 }
 
@@ -907,6 +910,82 @@ void MainWindow::readJson42() //解析Json文件
           //qDebug()<< "name:" << name;
       }
       return value;
+  }
+
+
+  void MainWindow::craeteUIfBgS() //创建 UI 静止的背景图片fBgS 数据 Json描述
+  {
+      qDebug() << "以创建静止的背景图片fBgSJson文件UIfBgS"<<endl;
+
+      QMap<QString, QVariant> map1;
+      QList<QVariant> list2;
+
+      QMap<QString, QVariant> map31;
+      QMap<QString, QVariant> map32;
+      QMap<QString, QVariant> map4_1;
+      QMap<QString, QVariant> map4_2;
+
+      QList<QVariant> list3;
+
+      map4_1.insert("x","100");
+      map4_1.insert("y","100");
+      map4_1.insert("with","800");
+      map4_1.insert("height","480");
+      map4_1.insert("scaleX","1");
+      map4_1.insert("scaleY","800");
+      map4_1.insert("orderZ","0");
+      map4_1.insert("image","bg1.png");
+
+      map4_2.insert("x","200");
+      map4_2.insert("y","200");
+      map4_2.insert("with","800");
+      map4_2.insert("height","480");
+      map4_2.insert("scaleX","1");
+      map4_2.insert("scaleY","800");
+      map4_2.insert("orderZ","0");
+      map4_2.insert("image","bg1.png");
+
+      map31.insert("bgs",map4_1);
+      map32.insert("bgs",map4_2);
+
+      list3.append(map31);
+      list3.append(map32);
+
+      list2.append(list3);
+
+      map1.insert("fBgS",list2);
+
+      QJsonDocument doc2=QJsonDocument::fromVariant(QVariant(map1));
+      QByteArray b=doc2.toJson();
+      qDebug()<<b;
+
+      QString path = "f:\\UIfBgS.json";
+      QFile file(path);
+         if (!file.open(QIODevice::WriteOnly)) {
+             QMessageBox::warning(
+                         this,
+                         QObject::tr("Write failure"),
+                         QObject::tr("Cannot write file \n%1\n%2").arg(file.fileName()).arg(
+                             file.errorString()));
+             return;
+         }
+
+        QTextStream out(&file);
+        QString json_str(b);
+        out<<json_str<<endl;
+        file.close();
+  }
+  void MainWindow::readUIfBgS() //解析fBgS Json数据文件
+  {
+        qDebug() << "以解析静止的背景图片fBgSJson文件UIfBgS"<<endl;
+        QFile *file=new QFile("f:\\UIfBgS.json");
+        file->open(QIODevice::ReadOnly|QIODevice::Text);
+        QTextStream in(file);
+        QString b= in.readAll();
+        qDebug() << b;
+
+        file->close();
+
   }
 
 

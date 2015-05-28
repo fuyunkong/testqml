@@ -5,8 +5,9 @@ import QtQuick.Window 2.2
 ApplicationWindow {
     title: qsTr("UI编辑器")
 
-    width: changji.width;
+    width: changji.width + 250;
     height:changji.height+22;
+    opacity:1
     menuBar: MenuBar {
 
         Menu {
@@ -27,6 +28,7 @@ Rectangle{
     width: 800;
     height:480;
     border.color: "black"
+    opacity:1
 
     Button {
         text: qsTr("按钮")
@@ -146,10 +148,10 @@ Rectangle{
                 drag.target: parent
                 drag.axis: "XAxis"
                 drag.minimumX: 0
-                drag.maximumX: opacitytest.width-parent.width
+                drag.maximumX: changji.width-parent.width
 
                 drag.minimumY: 0
-                drag.maximumY: opacitytest.height-parent.height
+                drag.maximumY: changji.height-parent.height
         }
 
 
@@ -170,31 +172,81 @@ Rectangle{
         }
     }
 
+
+
     Rectangle {//wll 10 鼠标事件 随意拖拽
         id: rectangle5
         x: 230
         y: 214
+        z:0
         width: 100
         height: 100
         color: "#04d23d"
         border.color: "#ea0707"
+
+
+        onXChanged: {
+            tx.text = rectangle5.x
+        }
+        onYChanged: {
+            ty.text = rectangle5.y
+        }
+
         MouseArea {
             anchors.fill: parent
             // See Qt::MouseButtons for a list of available buttons
+
             acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: {
-                if (mouse.button == Qt.RightButton)
-                  parent.color = 'blue';
-                else
-                  parent.color = 'red';
+                    if (mouse.button == Qt.RightButton){
+                      parent.color = 'blue';
+                      xx.popup();
+
+                    }
+                    else{
+                      parent.color = 'red';
+                      tx.text = rectangle5.x
+                      ty.text = rectangle5.y
+                    }
                 }
+
                 drag.target: parent
+
                 drag.axis: "XandYAxis"
                 drag.minimumX: 0
                 drag.maximumX: changji.x+changji.width-parent.width
 
                 drag.minimumY: 0
                 drag.maximumY: changji.y+changji.height-parent.height
+
+
+
+
+        }
+        Menu { // 右键菜单
+                //title: "Edit"
+                id: xx
+
+
+                MenuItem {
+                    text: "z++"
+                    //shortcut: "Ctrl+X"
+                    onTriggered: {
+                        rectangle5.z++
+
+                    }
+                }
+
+                MenuItem {
+                    text: "z--"
+                    //shortcut: "Ctrl+C"
+                    onTriggered: {
+                        rectangle5.z--
+                        if(rectangle5.z <= 0){
+                            rectangle5.z = 0
+                        }
+                    }
+                }
         }
     }
 
@@ -221,10 +273,10 @@ Rectangle{
                 drag.target: parent
                 drag.axis: "YAxis"
                 drag.minimumX: 0
-                drag.maximumX: opacitytest.width-parent.width
+                drag.maximumX: changji.width-parent.width
 
                 drag.minimumY: 0
-                drag.maximumY: opacitytest.height-parent.height
+                drag.maximumY: changji.height-parent.height
         }
 
         Menu { // 右键菜单
@@ -278,4 +330,40 @@ Rectangle{
 //    }
 
  }
+
+
+A{
+    x:800
+    y:100
+}
+
+Rectangle{
+    id:rect_tx
+    x:800
+    y:200
+    width:50
+    height: 20
+    color: "yellow"
+    opacity: 0.5
+    Text {
+        id: tx
+        text: qsTr("tx")
+    }
+}
+
+Rectangle{
+    id:rect_ty
+    x:800
+    y:250
+    width:50
+    height: 20
+    color: "yellow"
+    opacity: 0.5
+    Text {
+        id: ty
+        text: qsTr("ty")
+    }
+}
+
+
 }
